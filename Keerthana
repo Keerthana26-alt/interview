@@ -1,0 +1,112 @@
+package baluboy;
+
+public class Keerthana  implements java.io.Serializable {
+
+
+   
+  private int id;
+    
+ private String firstName;
+    
+ private String lastName;
+     
+private String mobilenumber;
+   
+  private String address;
+    
+ private String city;
+   
+  private String country;
+  
+   private String state;
+
+    
+public Keerthana() {
+  
+  }
+
+	
+
+    public Keerthana(int id) {
+  
+      this.id = id;
+   
+ }
+   
+ public Keerthana(int id, String firstName, String lastName, String mobilenumber, String address, String city, String country, String state) {
+   
+    this.id = id;
+      
+ this.firstName = firstName;
+   
+    this.lastName = lastName;
+     
+  this.mobilenumber = mobilenumber;
+    
+   this.address = address;
+     
+  this.city = city;
+     
+  this.country = country;
+       this.state = state;
+    }
+   
+    public int getId() {
+        return this.id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getFirstName() {
+        return this.firstName;
+    }
+    
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return this.lastName;
+    }
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getMobilenumber() {
+        return this.mobilenumber;
+    }
+    
+    public void setMobilenumber(String mobilenumber) {
+        this.mobilenumber = mobilenumber;
+    }
+    public String getAddress() {
+        return this.address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getCity() {
+        return this.city;
+    }
+    
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public String getCountry() {
+        return this.country;
+    }
+    
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    public String getState() {
+        return this.state;
+    }
+    
+    public void setState(String state) {
+        this.state = state;
+    }
+}
+
+
