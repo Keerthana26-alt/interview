@@ -1,0 +1,133 @@
+package baluboy;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+public class detail {
+    
+    public Scene getScene()
+    {
+        Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+		SessionFactory sf = cfg.buildSessionFactory();
+       Label first_name=new Label("firstname");
+        Label last_name=new Label("lastname");
+        Label mobile_number=new Label("mobile_number");
+        Label address_=new Label("address");
+        Label city_=new Label("city");
+        Label state_=new Label("state");
+        Label country_=new Label("country");
+        TextField firstname=new TextField();
+        TextField lastname=new TextField();
+        TextField mobilenumber=new TextField();
+        TextField address=new TextField();
+        TextField city=new TextField();
+        TextField state=new TextField();
+        TextField country=new TextField();
+        Button btn = new Button("submit");
+       
+        btn.setText("submit");
+        
+        Label delete=new Label("Delete");
+        TextField id=new TextField("Id");
+        Button b1=new Button("Delete");
+        Label first_name1=new Label("firstname1");
+        Label last_name1=new Label("lastname1");
+        Label mobile_number1=new Label("mobile_number1");
+        Label address_1=new Label("address1");
+        Label city_1=new Label("city1");
+        Label state_1=new Label("state1");
+        Label country_1=new Label("country1");
+         btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            
+            public void handle(ActionEvent event) {
+                try{
+                    Keerthana user=new Keerthana();
+                    user.setId(8);
+                user.setFirstName(firstname.getText());
+			user.setLastName(lastname.getText());
+			user.setMobilenumber(mobilenumber.getText());
+			user.setAddress(address.getText());
+			user.setCity(city.getText());
+			user.setState(state.getText());
+                        user.setCountry(country.getText());
+			Session session = sf.openSession();
+			session.beginTransaction();
+			session.save(user);
+			session.getTransaction().commit();
+			session.close();
+
+		firstname.clear();
+		lastname.clear();
+		mobilenumber.clear();
+		address.clear();
+		city.clear();
+                state.clear();
+                country.clear();
+	
+                }
+                catch(Exception e)
+                {
+                    System.out.println("error"+e.getCause() .toString());
+                }
+			
+                System.out.println("fun"+firstname.getText());
+                view v=new view();
+                Scene s=v.getScene();
+                Baluboy.primaryStage.setScene(s);
+                Baluboy.primaryStage.show();
+            }
+            
+         });
+         b1.setOnAction(new EventHandler<ActionEvent>() {
+            
+           
+            public void handle(ActionEvent event) {
+                System.out.println("fun"+lastname.getText());
+                
+                Session session = sf.openSession();
+                   Query query=session.createQuery("Delete  from keerthana where Id="+id.getText());
+			session.beginTransaction();
+			session.save(query);
+			session.getTransaction().commit();
+			session.close();
+		firstname.clear();
+		lastname.clear();
+		mobilenumber.clear();
+		address.clear();
+		city.clear();
+                state.clear();
+                country.clear();       
+            }
+            
+         });
+         GridPane root = new GridPane();
+        root.addRow(0,first_name,firstname);
+        root.addRow(1,last_name,lastname);
+        root.addRow(2,mobile_number,mobilenumber);
+        root.addRow(3,address_,address);
+        root.addRow(4,city_,city);
+        root.addRow(5,state_,state);
+        root.addRow(6,country_,country);
+        root.addRow(7,btn);
+        root.addRow(8,delete);
+        root.addRow(9,id,b1);
+        Scene scene = new Scene(new Group(), 600, 350);
+        Group root1=(Group)scene.getRoot();
+        root1.getChildren().add(root);
+        return scene;
+        
+        
+    }
+   
+}
