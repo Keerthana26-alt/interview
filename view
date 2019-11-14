@@ -1,0 +1,69 @@
+package baluboy;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class view {
+     public Scene getScene()
+    {
+        TableView t=new TableView();
+       Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+		SessionFactory sf = cfg.buildSessionFactory();
+        
+        System.out.println("j");
+       t.setEditable(true);
+        Session session = sf.openSession();
+	
+         Query query=session.createQuery("select * from keerthana");
+        
+        session.beginTransaction();
+			session.save(query);
+			session.getTransaction().commit();
+			session.close();
+                        ObservableList<Keerthana> list =FXCollections.observableArrayList(  query.list());
+     TableColumn first_name=new TableColumn("firstname");
+       
+       TableColumn<String, Keerthana> c0 = new TableColumn<>("Id");
+        c0.setCellValueFactory(new PropertyValueFactory<>("id"));
+        TableColumn<String, Keerthana> c1 = new TableColumn<>("First Name");
+        c1.setCellValueFactory(new PropertyValueFactory <>("firstName"));
+ TableColumn<String, Keerthana> c2 = new TableColumn<>("Last Name");
+        c2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+ TableColumn<String, Keerthana> c3 = new TableColumn<>("MobileNumber");
+        c3.setCellValueFactory(new PropertyValueFactory<>("mobilenumber"));
+        TableColumn<String, Keerthana> c4 = new TableColumn<>("Address");
+        c4.setCellValueFactory(new PropertyValueFactory<>("address"));
+        TableColumn<String, Keerthana> c5 = new TableColumn<>("City");
+        c5.setCellValueFactory(new PropertyValueFactory<>("city"));
+       TableColumn<String, Keerthana> c6= new TableColumn<>("State");
+        c6.setCellValueFactory(new PropertyValueFactory<>("state"));
+        TableColumn<String, Keerthana> c7 = new TableColumn<>("Country");
+        c7.setCellValueFactory(new PropertyValueFactory<>("country"));
+       t.getColumns().addAll(c0,c1,c2,c3,c4,c5,c6,c7);
+        
+        for (Keerthana k:list)
+        {
+            
+        t.getItems().add(new Keerthana(k.getId(), k.getFirstName(),k.getLastName(),k.getMobilenumber(),k.getAddress(),k.getCity(),k.getState(),k.getCountry()));
+        
+        }
+        VBox vbox = new VBox(t);
+
+        Scene scene = new Scene(vbox);
+        
+       
+        return scene;
+}
+}
