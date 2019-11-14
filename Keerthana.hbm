@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping SYSTEM "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN">
+
+-<hibernate-mapping>
+
+
+-<class optimistic-lock="version" catalog="mysql" table="keerthana" name="baluboy.Keerthana">
+
+
+-<id name="id" type="int">
+
+<column name="id"/>
+
+<generator class="assigned"/>
+
+</id>
+
+
+-<property name="firstName" type="string">
+
+<column name="first_name" length="30"/>
+
+</property>
+
+
+-<property name="lastName" type="string">
+
+<column name="last_name" length="30"/>
+
+</property>
+
+
+-<property name="mobilenumber" type="string">
+
+<column name="mobilenumber" length="10"/>
+
+</property>
+
+
+-<property name="address" type="string">
+
+<column name="address" length="50"/>
+
+</property>
+
+
+-<property name="city" type="string">
+
+<column name="city" length="10"/>
+
+</property>
+
+
+-<property name="country" type="string">
+
+<column name="country" length="10"/>
+
+</property>
+
+
+-<property name="state" type="string">
+
+<column name="state" length="20"/>
+
+</property>
+
+</class>
+
+</hibernate-mapping>
